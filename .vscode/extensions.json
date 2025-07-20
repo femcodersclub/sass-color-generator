@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "ritwickdey.live-sass",
+    "ritwickdey.liveserver",
+    "syler.sass-indented",
+    "bradlc.vscode-tailwindcss",
+    "ms-vscode.vscode-json",
+    "esbenp.prettier-vscode"
+  ]
+}

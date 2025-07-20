@@ -1,0 +1,280 @@
+// Ejemplo de arquitectura SASS profesional
+// Este archivo demuestra las funcionalidades explicadas en el tutorial
+
+// ========================================
+// VARIABLES
+// ========================================
+$primary: #821ad4;
+$secondary: #ea4f33;
+$accent: #4737bb;
+$neutral: #ffffff;
+
+// Sistema de colores usando mapas
+$colors: (
+  primary: $primary,
+  secondary: $secondary,
+  accent: $accent,
+  neutral: $neutral,
+  success: #28a745,
+  warning: #ffc107,
+  error: #dc3545,
+  dark: #1a1a1a
+);
+
+// Breakpoints responsivos
+$breakpoints: (
+  mobile: 480px,
+  tablet: 768px,
+  desktop: 1024px,
+  wide: 1200px
+);
+
+// Espaciado consistente
+$spacing: (
+  xs: 0.25rem,
+  sm: 0.5rem,
+  md: 1rem,
+  lg: 1.5rem,
+  xl: 2rem,
+  xxl: 3rem
+);
+
+// ========================================
+// FUNCIONES
+// ========================================
+@function color($name) {
+  @return map-get($colors, $name);
+}
+
+@function spacing($size) {
+  @return map-get($spacing, $size);
+}
+
+@function get-contrast($color) {
+  @if (lightness($color) > 50%) {
+    @return #000000;
+  } @else {
+    @return #ffffff;
+  }
+}
+
+// ========================================
+// MIXINS
+// ========================================
+
+// Mixin para media queries
+@mixin media($breakpoint) {
+  @media (min-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+// Mixin para centrar con flexbox
+@mixin flex-center($direction: row, $gap: 0) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+  
+  @if $gap > 0 {
+    gap: $gap;
+  }
+}
+
+// Mixin para botones
+@mixin button-style($bg-color, $text-color: color(neutral), $hover-darken: 10%) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  padding: spacing(md) spacing(lg);
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: darken($bg-color, $hover-darken);
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Mixin para sombras
+@mixin shadow($level: 1) {
+  @if $level == 1 {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  } @else if $level == 2 {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  } @else if $level == 3 {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Mixin para truncar texto
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ========================================
+// PLACEHOLDERS (para @extend)
+// ========================================
+%card-base {
+  background: color(neutral);
+  border-radius: 0.5rem;
+  padding: spacing(lg);
+  @include shadow(2);
+}
+
+%button-base {
+  border: none;
+  border-radius: 0.375rem;
+  padding: spacing(md) spacing(lg);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+// ========================================
+// COMPONENTES USANDO LAS UTILIDADES
+// ========================================
+
+// Estructura con anidación (máximo 3 niveles)
+.app-header {
+  background: color(primary);
+  padding: spacing(lg);
+  
+  .nav {
+    @include flex-center(row, spacing(md));
+    
+    .nav-item {
+      color: color(neutral);
+      text-decoration: none;
+      padding: spacing(sm) spacing(md);
+      border-radius: 0.25rem;
+      
+      &:hover {
+        background: rgba(color(neutral), 0.1);
+      }
+    }
+  }
+}
+
+// Botones usando mixins
+.btn-primary {
+  @include button-style(color(primary));
+}
+
+.btn-secondary {
+  @include button-style(color(secondary));
+}
+
+.btn-accent {
+  @include button-style(color(accent));
+}
+
+// Cards usando placeholders
+.card {
+  @extend %card-base;
+  
+  &.card-featured {
+    border-left: 4px solid #{color(primary)};
+  }
+}
+
+// Grid responsivo
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: spacing(lg);
+  
+  @include media(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include media(desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @include media(wide) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Utilidades de espaciado
+@each $name, $value in $spacing {
+  .p-#{$name} { padding: $value; }
+  .pt-#{$name} { padding-top: $value; }
+  .pr-#{$name} { padding-right: $value; }
+  .pb-#{$name} { padding-bottom: $value; }
+  .pl-#{$name} { padding-left: $value; }
+  
+  .m-#{$name} { margin: $value; }
+  .mt-#{$name} { margin-top: $value; }
+  .mr-#{$name} { margin-right: $value; }
+  .mb-#{$name} { margin-bottom: $value; }
+  .ml-#{$name} { margin-left: $value; }
+}
+
+// Utilidades de color
+@each $name, $value in $colors {
+  .bg-#{$name} { 
+    background-color: $value; 
+    color: get-contrast($value);
+  }
+  .text-#{$name} { color: $value; }
+  .border-#{$name} { border-color: $value; }
+}
+
+// ========================================
+// EJEMPLO DE ARQUITECTURA 7-1
+// ========================================
+
+// En un proyecto real, este archivo se dividiría así:
+//
+// abstracts/
+//   _variables.scss    - $colors, $breakpoints, $spacing
+//   _functions.scss    - color(), spacing(), get-contrast()
+//   _mixins.scss       - media(), flex-center(), button-style()
+//   _placeholders.scss - %card-base, %button-base
+//
+// base/
+//   _reset.scss        - Normalize/reset CSS
+//   _typography.scss   - Fuentes y estilos de texto
+//
+// layout/
+//   _header.scss       - .app-header
+//   _footer.scss       - Estilos del footer
+//   _sidebar.scss      - Estilos del sidebar
+//
+// components/
+//   _buttons.scss      - .btn-primary, .btn-secondary
+//   _cards.scss        - .card y variantes
+//   _forms.scss        - Estilos de formularios
+//
+// pages/
+//   _home.scss         - Estilos específicos de la home
+//   _about.scss        - Estilos específicos de about
+//
+// themes/
+//   _dark.scss         - Tema oscuro
+//
+// vendors/
+//   _normalize.scss    - CSS de terceros
+//
+// main.scss seria así:
+// @use 'abstracts/variables';
+// @use 'abstracts/functions';
+// @use 'abstracts/mixins';
+// @use 'abstracts/placeholders';
+// @use 'base/reset';
+// @use 'base/typography';
+// @use 'layout/header';
+// @use 'layout/footer';
+// @use 'components/buttons';
+// @use 'components/cards';
+// @use 'pages/home';

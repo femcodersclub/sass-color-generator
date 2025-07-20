@@ -1,0 +1,460 @@
+<!-- Proyecto: FemPalette - Generador visual de paletas accesibles en SCSS -->
+<!-- Stack: HTML + CSS + JS + SASS -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎨 FemPalette</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <h1>🎨 FemPalette</h1>
+      <p>Aprende SASS mientras generas tu paleta accesible</p>
+      <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="showTab('generator')">🎨 Generador</button>
+        <button class="tab-btn" onclick="showTab('tutorial')">📚 Tutorial SASS</button>
+        <button class="tab-btn" onclick="showTab('examples')">💡 Ejemplos</button>
+      </nav>
+    </header>
+
+    <!-- Tab: Generador de Paletas -->
+    <div id="generator" class="tab-content active">
+      <div class="palette-container">
+        <h2>Generador de Variables SCSS</h2>
+        
+        <div class="explanation-card">
+          <h3>🔍 ¿Qué estás viendo?</h3>
+          <p>Este generador te muestra en tiempo real cómo las <strong>variables SASS</strong> simplifican la gestión de colores en tus proyectos.</p>
+        </div>
+
+        <div class="color-pickers">
+          <label>Primary
+            <input type="color" name="primary" value="#821ad4">
+            <span class="variable-name">$primary</span>
+          </label>
+          <label>Secondary
+            <input type="color" name="secondary" value="#ea4f33">
+            <span class="variable-name">$secondary</span>
+          </label>
+          <label>Accent
+            <input type="color" name="accent" value="#4737bb">
+            <span class="variable-name">$accent</span>
+          </label>
+          <label>Neutral
+            <input type="color" name="neutral" value="#ffffff">
+            <span class="variable-name">$neutral</span>
+          </label>
+        </div>
+
+        <div class="preview" id="preview">
+          <h3>Vista previa</h3>
+          <p>Este componente usa las variables que definiste arriba</p>
+        </div>
+
+        <div class="code-preview">
+          <h3>📄 SCSS generado:</h3>
+          <pre id="scss-preview">
+$primary: #821ad4;
+$secondary: #ea4f33;
+$accent: #4737bb;
+$neutral: #ffffff;
+$on-primary: get-contrast($primary);
+$on-secondary: get-contrast($secondary);
+$on-accent: get-contrast($accent);</pre>
+        </div>
+
+        <button class="primary-button" onclick="generateSCSS()">
+          📥 Exportar _colors.scss
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab: Tutorial SASS -->
+    <div id="tutorial" class="tab-content">
+      <div class="tutorial-container">
+        <h2>📚 SASS: Lleva tu CSS al siguiente nivel</h2>
+        
+        <div class="tutorial-section">
+          <h3>🔶 ¿Qué es SASS?</h3>
+          <p>SASS es un preprocesador de CSS que te permite usar variables, funciones, anidación y más características que CSS puro no soporta.</p>
+          
+          <div class="code-example">
+            <h4>Variables en SASS:</h4>
+            <pre class="code-block scss">
+// En lugar de repetir colores
+.header { background-color: #4737bb; }
+.button { border-color: #4737bb; }
+
+// Usa variables
+$color-primario: #4737bb;
+.header { background-color: $color-primario; }
+.button { border-color: $color-primario; }</pre>
+          </div>
+        </div>
+
+        <div class="tutorial-section">
+          <h3>🔶 Anidación</h3>
+          <p>Refleja la estructura de tu HTML en tu CSS:</p>
+          
+          <div class="code-example">
+            <pre class="code-block scss">
+nav {
+  background: $primary;
+  
+  ul {
+    list-style: none;
+    
+    li {
+      padding: 0.5rem;
+      
+      a {
+        color: $neutral;
+        text-decoration: none;
+        
+        &:hover {
+          color: $accent;
+        }
+      }
+    }
+  }
+}</pre>
+          </div>
+        </div>
+
+        <div class="tutorial-section">
+          <h3>🔶 Mixins - Reutiliza código</h3>
+          <p>Los mixins te permiten reutilizar bloques de código con parámetros:</p>
+          
+          <div class="code-example">
+            <pre class="code-block scss">
+@mixin flex-center($direction: row) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+.contenedor {
+  @include flex-center(column);
+}</pre>
+          </div>
+        </div>
+
+        <div class="tutorial-section">
+          <h3>🔶 Instalación rápida</h3>
+          <div class="code-example">
+            <pre class="code-block bash">
+# Instalar SASS globalmente
+npm install -g sass
+
+# Compilar un archivo
+sass style.scss style.css
+
+# Modo watch (auto-compilación)
+sass --watch style.scss:style.css</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Ejemplos -->
+    <div id="examples" class="tab-content">
+      <div class="examples-container">
+        <h2>💡 Ejemplos Prácticos</h2>
+        
+        <div class="example-card">
+          <h3>🎨 Sistema de Colores Completo</h3>
+          <pre class="code-block scss">
+// _colors.scss
+$colors: (
+  primary: #821ad4,
+  secondary: #ea4f33,
+  accent: #4737bb,
+  neutral: #ffffff,
+  success: #28a745,
+  warning: #ffc107,
+  error: #dc3545
+);
+
+@function color($name) {
+  @return map-get($colors, $name);
+}
+
+// Uso
+.button-primary {
+  background-color: color(primary);
+  color: color(neutral);
+}</pre>
+        </div>
+
+        <div class="example-card">
+          <h3>📱 Breakpoints Responsivos</h3>
+          <pre class="code-block scss">
+// _breakpoints.scss
+$breakpoints: (
+  mobile: 480px,
+  tablet: 768px,
+  desktop: 1024px,
+  wide: 1200px
+);
+
+@mixin media($breakpoint) {
+  @media (min-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+// Uso
+.container {
+  width: 100%;
+  
+  @include media(tablet) {
+    max-width: 768px;
+  }
+  
+  @include media(desktop) {
+    max-width: 1024px;
+  }
+}</pre>
+        </div>
+
+        <div class="example-card">
+          <h3>🧩 Arquitectura 7-1</h3>
+          <pre class="code-block scss">
+// main.scss
+@use 'abstracts/variables';
+@use 'abstracts/functions';
+@use 'abstracts/mixins';
+
+@use 'base/reset';
+@use 'base/typography';
+
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/sidebar';
+
+@use 'components/button';
+@use 'components/card';
+
+@use 'pages/home';
+@use 'pages/about';</pre>
+        </div>
+
+        <div class="tips-section">
+          <h3>✨ Tips Pro de SASS</h3>
+          <ul class="tips-list">
+            <li>🚫 No anides más de 3 niveles de profundidad</li>
+            <li>📁 Usa arquitectura modular (7-1 pattern)</li>
+            <li>🔧 Aprovecha las funciones built-in: <code>lighten()</code>, <code>darken()</code>, <code>mix()</code></li>
+            <li>🎯 Usa <code>@use</code> en lugar de <code>@import</code> (más moderno)</li>
+            <li>🎨 Combina SASS con CSS Custom Properties para máxima flexibilidad</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <div class="footer-logo">
+          <img src="assets/logo-femcodersclub.jpg" alt="femCoders Club" class="logo-img">
+          <div class="logo-text">
+            <h3>femCoders Club</h3>
+            <p>Empoderando el futuro tech</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>🎨 FemPalette</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showTab('generator')">Generador de Paletas</a></li>
+          <li><a href="#" onclick="showTab('tutorial')">Tutorial SASS</a></li>
+          <li><a href="#" onclick="showTab('examples')">Ejemplos Prácticos</a></li>
+        </ul>
+      </div>
+      
+        <div class="footer-section">
+          <h4>📚 Recursos</h4>
+          <ul class="footer-links">
+            <li><a href="https://sass-lang.com/" target="_blank" rel="noopener">🎨 SASS Oficial</a></li>
+            <li><a href="https://sass-guidelin.es/" target="_blank" rel="noopener">📖 SASS Guidelines</a></li>
+            <li><a href="https://github.com/femcodersclub" target="_blank" rel="noopener">⚡ GitHub femCoders</a></li>
+          </ul>
+        </div>      <div class="footer-section">
+        <h4>🌟 Comunidad</h4>
+        <ul class="footer-links">
+          <li><a href="https://communityinviter.com/apps/femcodersclub/femcoders-club" target="_blank" rel="noopener">💬 Únete al Slack</a></li>
+          <li><a href="https://x.com/FemCodersClub" target="_blank" rel="noopener">🐦 Síguenos en X (Twitter)</a></li>
+          <li><a href="https://www.linkedin.com/company/100394366/" target="_blank" rel="noopener">💼 LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/femcoders_club/" target="_blank" rel="noopener">📸 Instagram</a></li>
+          <li><a href="https://femcodersclub.com" target="_blank" rel="noopener">🌐 Sitio Web</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 femCoders Club. Hecho con ❤️ y mucho café ☕</p>
+      <p class="footer-subtitle">Aprende, crea y transforma el mundo tech</p>
+    </div>
+  </footer>
+
+  <script>
+    const inputs = document.querySelectorAll('input[type="color"]');
+    const preview = document.getElementById('preview');
+    const scssPreview = document.getElementById('scss-preview');
+
+    const palette = {
+      primary: "#821ad4",
+      secondary: "#ea4f33",
+      accent: "#4737bb",
+      neutral: "#ffffff"
+    };
+
+    // Inicializar vista previa
+    updatePreview();
+    updateSCSSPreview();
+
+    inputs.forEach(input => {
+      input.addEventListener('input', (e) => {
+        palette[e.target.name] = e.target.value;
+        updatePreview();
+        updateSCSSPreview();
+      });
+    });
+
+    function updatePreview() {
+      preview.style.backgroundColor = palette.primary;
+      preview.style.color = palette.neutral;
+      preview.style.borderColor = palette.accent;
+    }
+
+    function updateSCSSPreview() {
+      if (scssPreview) {
+        scssPreview.textContent = `$primary: ${palette.primary};
+$secondary: ${palette.secondary};
+$accent: ${palette.accent};
+$neutral: ${palette.neutral};
+$on-primary: get-contrast($primary);
+$on-secondary: get-contrast($secondary);
+$on-accent: get-contrast($accent);`;
+      }
+    }
+
+    function showTab(tabName) {
+      // Ocultar todos los tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Remover clase active de botones
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Mostrar tab seleccionado
+      document.getElementById(tabName).classList.add('active');
+      
+      // Activar botón correspondiente
+      const targetBtn = document.querySelector(`[onclick="showTab('${tabName}')"]`);
+      if (targetBtn) {
+        targetBtn.classList.add('active');
+      }
+      
+      // Scroll suave hacia arriba cuando se cambia de tab desde el footer
+      if (event && event.target && event.target.closest('.footer')) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    function generateSCSS() {
+      const content = `// Paleta de colores generada por FemPalette
+// femCoders Club - Aprende SASS de forma práctica
+
+$primary: ${palette.primary};
+$secondary: ${palette.secondary};
+$accent: ${palette.accent};
+$neutral: ${palette.neutral};
+
+// Colores de contraste automáticos
+$on-primary: get-contrast($primary);
+$on-secondary: get-contrast($secondary);
+$on-accent: get-contrast($accent);
+
+// Función para obtener colores del mapa
+$colors: (
+  primary: $primary,
+  secondary: $secondary,
+  accent: $accent,
+  neutral: $neutral
+);
+
+@function color($name) {
+  @return map-get($colors, $name);
+}
+
+// Mixins útiles incluidos
+@mixin theme-button($bg-color, $text-color: $neutral) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: darken($bg-color, 10%);
+  }
+}
+
+// Clases de utilidad
+.bg-primary { background-color: $primary; }
+.bg-secondary { background-color: $secondary; }
+.bg-accent { background-color: $accent; }
+.text-primary { color: $primary; }
+.text-secondary { color: $secondary; }
+.text-accent { color: $accent; }
+`;
+      
+      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "_colors.scss";
+      link.click();
+      
+      // Mostrar notificación
+      showNotification("¡Archivo _colors.scss exportado! 🎉");
+    }
+
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 100);
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
