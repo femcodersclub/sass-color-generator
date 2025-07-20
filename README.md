@@ -2,9 +2,23 @@
 
 Un proyecto educativo interactivo que combina un generador de paletas de colores con un tutorial completo de SASS. Perfecto para aprender SASS de forma práctica mientras generas variables útiles para tus proyectos.
 
+## 🎬 Vista Previa
+
+![FemPalette Demo](assets/sass.gif)
+
+*🎯 Genera paletas de colores y aprende SASS en tiempo real con FemPalette*
+
 ## ✨ Características
 
-### 🎨 Generador de Paletas
+### �️ Arquitectura SASS 7-1 Profesional
+
+- **Estructura modular** con carpetas organizadas por responsabilidad
+- **Sistema de variables** centralizado y reutilizable
+- **Mixins y funciones** avanzadas para desarrollo rápido
+- **Auto-compilación** en modo desarrollo con watch mode
+- **Optimización** para producción con CSS comprimido
+
+### �🎨 Generador de Paletas
 
 - **Selector visual de colores** con vista previa en tiempo real
 - **Generación automática de variables SCSS** con funciones útiles
@@ -12,12 +26,14 @@ Un proyecto educativo interactivo que combina un generador de paletas de colores
 - **Vista previa del código** generado en tiempo real
 
 ### 📚 Tutorial Interactivo
+
 - **Conceptos fundamentales** de SASS explicados paso a paso
 - **Ejemplos de código** con sintaxis highlight
 - **Casos de uso reales** con arquitectura profesional
 - **Mejores prácticas** y tips de expertos
 
 ### 💡 Ejemplos Prácticos
+
 - **Sistema de colores completo** con mapas y funciones
 - **Breakpoints responsivos** con mixins
 - **Arquitectura 7-1** para proyectos escalables
@@ -26,6 +42,7 @@ Un proyecto educativo interactivo que combina un generador de paletas de colores
 ## 🚀 Cómo usar
 
 ### Método 1: Abrir directamente
+
 1. Abre `index.html` en tu navegador
 2. Explora las tres pestañas disponibles:
    - 🎨 **Generador**: Crea tu paleta de colores
@@ -33,6 +50,7 @@ Un proyecto educativo interactivo que combina un generador de paletas de colores
    - 💡 **Ejemplos**: Ve casos reales de implementación
 
 ### Método 2: Servidor local (recomendado)
+
 ```bash
 # Con Python
 python -m http.server 8000
@@ -49,27 +67,87 @@ Luego visita `http://localhost:8000` en tu navegador.
 ## 📁 Estructura del proyecto
 
 ```
-pruebaSaas/
-├── index.html                     # Aplicación principal
-├── styles/
-│   └── main.css                   # Estilos de la aplicación
-├── example-sass-architecture.scss # Ejemplo completo de SASS
+SassColorGenerator/
+├── index.html                     # Aplicación principal  
+├── scripts/
+│   └── main.js                    # Lógica JavaScript separada
+├── styles/                        # 🏗️ Arquitectura SASS 7-1
+│   ├── abstracts/                 # Variables, funciones, mixins
+│   │   ├── _variables.scss
+│   │   ├── _functions.scss  
+│   │   ├── _mixins.scss
+│   │   └── _placeholders.scss
+│   ├── base/                      # Estilos base
+│   │   ├── _reset.scss
+│   │   └── _typography.scss
+│   ├── layout/                    # Estructura de página
+│   │   ├── _header.scss
+│   │   ├── _footer.scss
+│   │   └── _grid.scss
+│   ├── components/                # Componentes reutilizables
+│   │   ├── _buttons.scss
+│   │   ├── _cards.scss
+│   │   ├── _forms.scss
+│   │   └── _notifications.scss
+│   ├── pages/                     # Estilos específicos
+│   │   └── _home.scss
+│   ├── utilities/                 # Clases utilitarias
+│   │   └── _utilities.scss
+│   ├── main.scss                  # Archivo principal SASS
+│   └── main.css                   # CSS compilado
+├── assets/
+│   ├── logo-femcodersclub.jpg     # Logo del proyecto
+│   └── sass.gif                   # Vista previa animada
+├── example-sass-architecture.scss # Ejemplo educativo completo
+├── ARCHITECTURE.md                # Documentación de la arquitectura
 └── README.md                      # Esta documentación
 ```
+
+## 🛠️ Comandos de Desarrollo
+
+### Instalación
+
+```bash
+npm install
+```
+
+### Desarrollo
+
+```bash
+# Modo desarrollo completo (SASS watch + Live Server)
+npm run dev
+
+# Solo compilar SASS una vez
+npm run build:sass
+
+# Solo watch de SASS (auto-recompilación)  
+npm run watch:sass
+
+# Solo servidor (requiere CSS ya compilado)
+npm run start
+```
+
+### Tareas de VS Code
+
+- `Ctrl+Shift+P` → `Tasks: Run Task` → `Dev Mode`
+- O usa las tareas: `Build SASS`, `Watch SASS`, `Start Live Server`
 
 ## 🎯 Casos de uso
 
 ### Para estudiantes
+
 - **Aprender SASS** de forma visual e interactiva
 - **Comprender conceptos** como variables, mixins y funciones
 - **Ver ejemplos reales** de arquitectura SASS
 
 ### Para desarrolladores
+
 - **Generar paletas** rápidamente para nuevos proyectos
 - **Obtener código SASS** listo para usar
 - **Consultar ejemplos** de mejores prácticas
 
 ### Para equipos
+
 - **Estandarizar colores** en proyectos
 - **Compartir configuraciones** de SASS
 - **Enseñar mejores prácticas** a miembros junior
@@ -77,6 +155,7 @@ pruebaSaas/
 ## 📚 Conceptos cubiertos
 
 ### Variables y Funciones
+
 ```scss
 $primary: #821ad4;
 $colors: (primary: $primary, secondary: $secondary);
@@ -87,6 +166,7 @@ $colors: (primary: $primary, secondary: $secondary);
 ```
 
 ### Mixins Reutilizables
+
 ```scss
 @mixin flex-center($direction: row) {
   display: flex;
@@ -97,6 +177,7 @@ $colors: (primary: $primary, secondary: $secondary);
 ```
 
 ### Anidación Inteligente
+
 ```scss
 .nav {
   ul {
@@ -109,12 +190,40 @@ $colors: (primary: $primary, secondary: $secondary);
 }
 ```
 
-### Arquitectura Escalable
+### Arquitectura SASS 7-1
+
+Este proyecto implementa la **arquitectura 7-1**, considerada la mejor práctica para proyectos SASS escalables:
+
 ```scss
-// Usando @use en lugar de @import
-@use 'abstracts/variables';
-@use 'components/buttons';
+// main.scss - Archivo principal
+@use 'abstracts/variables';   // 🔧 Variables globales
+@use 'abstracts/functions';   // ⚙️ Funciones SASS
+@use 'abstracts/mixins';      // 🧩 Mixins reutilizables
+
+@use 'base/reset';            // 🏛️ Reset CSS moderno
+@use 'base/typography';       // 📝 Sistema tipográfico
+
+@use 'layout/header';         // 📐 Estructura de página
+@use 'layout/footer';
+@use 'layout/grid';
+
+@use 'components/buttons';    // 🧩 Componentes UI
+@use 'components/cards';
+@use 'components/forms';
+
+@use 'pages/home';           // 📄 Estilos específicos
+@use 'utilities/utilities';  // 🛠️ Clases utilitarias
 ```
+
+**Beneficios:**
+
+- ✅ **Modularidad**: Cada archivo tiene una responsabilidad
+- ✅ **Reutilización**: Variables, mixins y funciones centralizados  
+- ✅ **Escalabilidad**: Fácil agregar nuevos componentes
+- ✅ **Mantenimiento**: Cambios globales desde variables
+- ✅ **Rendimiento**: Un solo archivo CSS compilado
+
+📖 **Documentación completa**: Ver [ARCHITECTURE.md](ARCHITECTURE.md)
 
 ## 🛠️ Instalación de SASS (opcional)
 
@@ -134,6 +243,7 @@ sass --watch example-sass-architecture.scss:output.css
 ## 🎨 Personalización
 
 ### Colores por defecto
+
 Puedes cambiar los colores iniciales en `index.html`:
 
 ```html
@@ -144,19 +254,23 @@ Puedes cambiar los colores iniciales en `index.html`:
 ```
 
 ### Estilos de la interfaz
+
 Modifica `styles/main.css` para personalizar la apariencia de la aplicación.
 
 ## 📖 Recursos adicionales
 
 ### Documentación oficial
+
 - [SASS Oficial](https://sass-lang.com/)
 - [SASS Guidelines](https://sass-guidelin.es/)
 
 ### Herramientas recomendadas
+
 - [VS Code SASS Extension](https://marketplace.visualstudio.com/items?itemName=Syler.sass-indented)
 - [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass)
 
 ### Arquitecturas recomendadas
+
 - [7-1 Pattern](https://sass-guidelin.es/#the-7-1-pattern)
 - [ITCSS](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/)
 
@@ -165,6 +279,7 @@ Modifica `styles/main.css` para personalizar la apariencia de la aplicación.
 ¿Tienes ideas para mejorar FemPalette? ¡Las contribuciones son bienvenidas!
 
 ### Ideas para nuevas características
+
 - [ ] Exportar a CSS Custom Properties
 - [ ] Generador de gradientes
 - [ ] Temas predefinidos (Material, Bootstrap, etc.)
@@ -173,6 +288,7 @@ Modifica `styles/main.css` para personalizar la apariencia de la aplicación.
 - [ ] Validador de contraste automático
 
 ### Cómo contribuir
+
 1. Fork del repositorio
 2. Crea una rama para tu feature (`git checkout -b feature/nueva-caracteristica`)
 3. Commit tus cambios (`git commit -m 'Agrega nueva característica'`)
@@ -188,12 +304,14 @@ Este proyecto está bajo la Licencia MIT. Puedes usarlo libremente en proyectos 
 Desarrollado con ❤️ por la comunidad **[femCoders Club](https://femcodersclub.com)**.
 
 ### Tecnologías utilizadas
+
 - HTML5 semántico
 - CSS3 con Custom Properties
 - JavaScript vanilla
 - SASS/SCSS
 
 ### Enlaces oficiales de femCoders Club
+
 - 🌐 **Web**: [femcodersclub.com](https://femcodersclub.com)
 - 💬 **Slack**: [Únete a la comunidad](https://communityinviter.com/apps/femcodersclub/femcoders-club)
 - 🐦 **X (Twitter)**: [@FemCodersClub](https://x.com/FemCodersClub)

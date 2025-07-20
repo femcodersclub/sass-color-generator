@@ -1,0 +1,92 @@
+// ========================================
+// FUNCIONES UTILITARIAS
+// ========================================
+
+@use 'variables' as *;
+
+// Función para obtener colores del mapa
+@function color($name) {
+  @if map-has-key($colors, $name) {
+    @return map-get($colors, $name);
+  }
+  @warn "Color '#{$name}' no encontrado en el mapa de colores.";
+  @return null;
+}
+
+// Función para obtener espaciado del mapa
+@function spacing($size) {
+  @if map-has-key($spacing, $size) {
+    @return map-get($spacing, $size);
+  }
+  @warn "Tamaño de espaciado '#{$size}' no encontrado.";
+  @return null;
+}
+
+// Función para obtener tamaños de fuente
+@function font-size($size) {
+  @if map-has-key($font-sizes, $size) {
+    @return map-get($font-sizes, $size);
+  }
+  @warn "Tamaño de fuente '#{$size}' no encontrado.";
+  @return null;
+}
+
+// Función para obtener peso de fuente
+@function font-weight($weight) {
+  @if map-has-key($font-weights, $weight) {
+    @return map-get($font-weights, $weight);
+  }
+  @warn "Peso de fuente '#{$weight}' no encontrado.";
+  @return null;
+}
+
+// Función para obtener sombras
+@function shadow($level) {
+  @if map-has-key($shadows, $level) {
+    @return map-get($shadows, $level);
+  }
+  @warn "Nivel de sombra '#{$level}' no encontrado.";
+  @return null;
+}
+
+// Función para obtener z-index
+@function z-index($layer) {
+  @if map-has-key($z-indexes, $layer) {
+    @return map-get($z-indexes, $layer);
+  }
+  @warn "Capa z-index '#{$layer}' no encontrada.";
+  @return null;
+}
+
+// Función para calcular contraste automático
+@function get-contrast($color) {
+  @if (lightness($color) > 50%) {
+    @return #000000;
+  } @else {
+    @return #ffffff;
+  }
+}
+
+// Función para crear variantes de color
+@function color-variant($color, $variant: 'base') {
+  @if $variant == 'light' {
+    @return lighten($color, 10%);
+  } @else if $variant == 'lighter' {
+    @return lighten($color, 20%);
+  } @else if $variant == 'dark' {
+    @return darken($color, 10%);
+  } @else if $variant == 'darker' {
+    @return darken($color, 20%);
+  }
+  @return $color;
+}
+
+// Función para convertir px a rem
+@function rem($pixels, $base: 16px) {
+  @return $pixels / $base * 1rem;
+}
+
+// Función para convertir px a em
+@function em($pixels, $base: 16px) {
+  @return $pixels / $base * 1em;
+}

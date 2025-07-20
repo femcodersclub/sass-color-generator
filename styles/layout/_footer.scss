@@ -1,0 +1,118 @@
+// ========================================
+// ESTILOS DEL FOOTER
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+
+.footer {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #ffffff;
+  padding: spacing(xxl) 0 spacing(xl) 0;
+  margin-top: spacing(xxl);
+}
+
+.footer-content {
+  @include container();
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: spacing(xl);
+  
+  @include media(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: spacing(xxl);
+  }
+  
+  @include media(desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footer-section {
+  h4 {
+    color: #ffffff;
+    margin-bottom: spacing(lg);
+    font-size: font-size(lg);
+    font-weight: font-weight(semibold);
+  }
+}
+
+.footer-logo {
+  @include flex-center(row, spacing(md));
+  align-items: flex-start;
+  margin-bottom: spacing(lg);
+  
+  .logo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #821ad4;
+  }
+  
+  .logo-text {
+    h3 {
+      margin: 0 0 spacing(xs) 0;
+      color: #821ad4;
+      font-size: font-size(xl);
+      font-weight: font-weight(bold);
+    }
+    
+    p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: font-size(sm);
+    }
+  }
+}
+
+.footer-links {
+  @include list-reset();
+  
+  li {
+    margin-bottom: spacing(sm);
+  }
+  
+  a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    @include smooth-transition();
+    font-size: font-size(sm);
+    
+    &:hover {
+      color: #821ad4;
+      text-decoration: none;
+      transform: translateX(4px);
+    }
+    
+    &:focus {
+      outline: 2px solid #821ad4;
+      outline-offset: 2px;
+      color: #821ad4;
+    }
+  }
+}
+
+.footer-bottom {
+  margin-top: spacing(xl);
+  padding-top: spacing(xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  @include container();
+  
+  p {
+    margin: 0 0 spacing(sm) 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: font-size(sm);
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .footer-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+  }
+}

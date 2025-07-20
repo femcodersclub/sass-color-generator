@@ -1,0 +1,150 @@
+// ========================================
+// CLASES UTILITARIAS
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+
+// Utilidades de espaciado
+@each $name, $value in $spacing {
+  // Padding
+  .p-#{$name} { padding: $value !important; }
+  .pt-#{$name} { padding-top: $value !important; }
+  .pr-#{$name} { padding-right: $value !important; }
+  .pb-#{$name} { padding-bottom: $value !important; }
+  .pl-#{$name} { padding-left: $value !important; }
+  .px-#{$name} { 
+    padding-left: $value !important; 
+    padding-right: $value !important; 
+  }
+  .py-#{$name} { 
+    padding-top: $value !important; 
+    padding-bottom: $value !important; 
+  }
+  
+  // Margin
+  .m-#{$name} { margin: $value !important; }
+  .mt-#{$name} { margin-top: $value !important; }
+  .mr-#{$name} { margin-right: $value !important; }
+  .mb-#{$name} { margin-bottom: $value !important; }
+  .ml-#{$name} { margin-left: $value !important; }
+  .mx-#{$name} { 
+    margin-left: $value !important; 
+    margin-right: $value !important; 
+  }
+  .my-#{$name} { 
+    margin-top: $value !important; 
+    margin-bottom: $value !important; 
+  }
+  
+  // Gap (para flexbox y grid)
+  .gap-#{$name} { gap: $value !important; }
+}
+
+// Utilidades de color
+@each $name, $value in $colors {
+  .bg-#{$name} { 
+    background-color: $value !important;
+  }
+  .text-#{$name} { 
+    color: $value !important; 
+  }
+  .border-#{$name} { 
+    border-color: $value !important; 
+  }
+  
+  // Variantes con opacidad
+  .bg-#{$name}-light { 
+    background-color: rgba($value, 0.1) !important; 
+  }
+  .bg-#{$name}-lighter { 
+    background-color: rgba($value, 0.05) !important; 
+  }
+}
+
+// Utilidades de display
+.d-none { display: none !important; }
+.d-inline { display: inline !important; }
+.d-inline-block { display: inline-block !important; }
+.d-block { display: block !important; }
+.d-flex { display: flex !important; }
+.d-inline-flex { display: inline-flex !important; }
+.d-grid { display: grid !important; }
+
+// Utilidades de flexbox
+.flex-row { flex-direction: row !important; }
+.flex-col { flex-direction: column !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.flex-nowrap { flex-wrap: nowrap !important; }
+
+.justify-start { justify-content: flex-start !important; }
+.justify-center { justify-content: center !important; }
+.justify-end { justify-content: flex-end !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-around { justify-content: space-around !important; }
+
+.items-start { align-items: flex-start !important; }
+.items-center { align-items: center !important; }
+.items-end { align-items: flex-end !important; }
+.items-stretch { align-items: stretch !important; }
+
+.flex-1 { flex: 1 1 0% !important; }
+.flex-auto { flex: 1 1 auto !important; }
+.flex-none { flex: none !important; }
+
+// Utilidades de posición
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
+.fixed { position: fixed !important; }
+.sticky { position: sticky !important; }
+
+// Utilidades de ancho y alto
+.w-full { width: 100% !important; }
+.w-auto { width: auto !important; }
+.h-full { height: 100% !important; }
+.h-auto { height: auto !important; }
+
+// Utilidades de border radius
+.rounded-none { border-radius: 0 !important; }
+.rounded-sm { border-radius: $border-radius-sm !important; }
+.rounded { border-radius: $border-radius-md !important; }
+.rounded-lg { border-radius: $border-radius-lg !important; }
+.rounded-xl { border-radius: $border-radius-xl !important; }
+.rounded-full { border-radius: 50% !important; }
+
+// Utilidades de sombra
+.shadow-none { box-shadow: none !important; }
+.shadow-sm { box-shadow: map-get($shadows, sm) !important; }
+.shadow { box-shadow: map-get($shadows, md) !important; }
+.shadow-lg { box-shadow: map-get($shadows, lg) !important; }
+.shadow-xl { box-shadow: map-get($shadows, xl) !important; }
+
+// Utilidades de overflow
+.overflow-hidden { overflow: hidden !important; }
+.overflow-visible { overflow: visible !important; }
+.overflow-scroll { overflow: scroll !important; }
+.overflow-auto { overflow: auto !important; }
+
+// Utilidades de cursor
+.cursor-pointer { cursor: pointer !important; }
+.cursor-default { cursor: default !important; }
+.cursor-not-allowed { cursor: not-allowed !important; }
+
+// Utilidades de opacidad
+.opacity-0 { opacity: 0 !important; }
+.opacity-25 { opacity: 0.25 !important; }
+.opacity-50 { opacity: 0.5 !important; }
+.opacity-75 { opacity: 0.75 !important; }
+.opacity-100 { opacity: 1 !important; }
+
+// Utilidades responsive (solo mostrar en ciertos breakpoints)
+@include media(tablet) {
+  .tablet-only { display: block !important; }
+  .mobile-only { display: none !important; }
+}
+
+@include media(desktop) {
+  .desktop-only { display: block !important; }
+  .tablet-only { display: none !important; }
+}

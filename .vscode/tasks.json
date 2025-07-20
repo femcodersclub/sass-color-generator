@@ -13,6 +13,41 @@
 			"group": "build",
 			"isBackground": true,
 			"problemMatcher": []
+		},
+		{
+			"label": "Watch SASS",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"watch:sass"
+			],
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build SASS",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build:sass"
+			],
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "Dev Mode",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": []
 		}
 	]
 }

@@ -5,10 +5,13 @@
   "main": "index.html",
   "scripts": {
     "start": "live-server --port=8080 --open=index.html",
-    "build:sass": "sass example-sass-architecture.scss:compiled-example.css",
-    "watch:sass": "sass --watch example-sass-architecture.scss:compiled-example.css",
+    "build:sass": "sass styles/main.scss:styles/main.css --style=compressed",
+    "watch:sass": "sass --watch styles/main.scss:styles/main.css",
+    "build:sass:example": "sass example-sass-architecture.scss:compiled-example.css",
+    "watch:sass:example": "sass --watch example-sass-architecture.scss:compiled-example.css",
     "serve": "python -m http.server 8000",
-    "dev": "concurrently \"npm run watch:sass\" \"npm run start\""
+    "dev": "concurrently \"npm run watch:sass\" \"npm run start\"",
+    "build": "npm run build:sass"
   },
   "keywords": [
     "sass",
@@ -24,9 +27,9 @@
   "author": "femCoders Club",
   "license": "MIT",
   "devDependencies": {
-    "sass": "^1.69.5",
+    "concurrently": "^8.2.2",
     "live-server": "^1.2.2",
-    "concurrently": "^8.2.2"
+    "sass": "^1.89.2"
   },
   "repository": {
     "type": "git",

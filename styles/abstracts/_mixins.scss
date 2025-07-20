@@ -1,0 +1,152 @@
+// ========================================
+// MIXINS REUTILIZABLES
+// ========================================
+
+@use 'variables' as *;
+@use 'functions' as *;
+
+// Mixin para media queries responsivas
+@mixin media($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' no encontrado.";
+  }
+}
+
+// Mixin para centrar con flexbox
+@mixin flex-center($direction: row, $gap: 0) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+  
+  @if $gap > 0 {
+    gap: $gap;
+  }
+}
+
+// Mixin para botones con estilos consistentes
+@mixin button-style($bg-color, $text-color: color(neutral), $hover-darken: 10%) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  padding: spacing(md) spacing(lg);
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  font-weight: font-weight(semibold);
+  font-family: $font-family-base;
+  font-size: font-size(base);
+  transition: $transition-base;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background-color: darken($bg-color, $hover-darken);
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:focus {
+    outline: 2px solid rgba($bg-color, 0.5);
+    outline-offset: 2px;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    
+    &:hover {
+      background-color: $bg-color;
+      transform: none;
+    }
+  }
+}
+
+// Mixin para sombras
+@mixin apply-shadow($level: md) {
+  box-shadow: shadow($level);
+}
+
+// Mixin para truncar texto
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Mixin para texto con múltiples líneas truncadas
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Mixin para reset de listas
+@mixin list-reset {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+// Mixin para clearfix
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// Mixin para ocultar visualmente pero mantener accesibilidad
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Mixin para contenedores con ancho máximo
+@mixin container($max-width: 1200px, $padding: spacing(lg)) {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+// Mixin para grid responsivo
+@mixin grid($columns: 1, $gap: spacing(lg)) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// Mixin para transiciones suaves
+@mixin smooth-transition($properties: all, $duration: $transition-base) {
+  transition: $properties $duration;
+}
+
+// Mixin para focus states accesibles
+@mixin focus-ring($color: color(primary)) {
+  &:focus {
+    outline: 2px solid $color;
+    outline-offset: 2px;
+  }
+  
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}

@@ -1,0 +1,158 @@
+// ========================================
+// ESTILOS DE CARDS
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/placeholders' as *;
+
+.card {
+  @extend %card-base;
+  @include smooth-transition();
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: shadow(lg);
+  }
+}
+
+// Card de explicación
+.explanation-card {
+  @extend %card-base;
+  background: linear-gradient(135deg, rgba(#821ad4, 0.05) 0%, rgba(#4737bb, 0.05) 100%);
+  border-left: 4px solid #821ad4;
+  margin-bottom: spacing(xl);
+  
+  h3 {
+    color: #821ad4;
+    margin-bottom: spacing(md);
+    font-size: font-size(xl);
+    
+    &::before {
+      content: attr(data-icon);
+      margin-right: spacing(sm);
+    }
+  }
+  
+  p {
+    color: rgba(#1a1a1a, 0.8);
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+// Cards de ejemplo
+.example-card {
+  @extend %card-base;
+  margin-bottom: spacing(xl);
+  
+  h3 {
+    color: #821ad4;
+    margin-bottom: spacing(lg);
+    font-size: font-size(xl);
+    @include flex-center(row, spacing(sm));
+    align-items: center;
+  }
+  
+  .code-block {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: spacing(lg);
+    border-radius: $border-radius-md;
+    overflow-x: auto;
+    font-family: $font-family-monospace;
+    font-size: font-size(sm);
+    line-height: 1.5;
+    margin: spacing(lg) 0;
+    
+    &.scss {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 100%);
+    }
+    
+    &.bash {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d4a22 100%);
+    }
+  }
+}
+
+// Card de tutorial
+.tutorial-section {
+  margin-bottom: spacing(xxl);
+  
+  h3 {
+    color: #821ad4;
+    margin-bottom: spacing(lg);
+    font-size: font-size(xl);
+    padding-bottom: spacing(sm);
+    border-bottom: 2px solid rgba(#821ad4, 0.2);
+  }
+  
+  p {
+    margin-bottom: spacing(lg);
+    color: rgba(#1a1a1a, 0.8);
+    line-height: 1.7;
+  }
+}
+
+// Código de ejemplo
+.code-example {
+  margin: spacing(lg) 0;
+  
+  h4 {
+    margin-bottom: spacing(md);
+    color: #4737bb;
+    font-size: font-size(lg);
+  }
+}
+
+// Vista previa de colores
+.preview {
+  background: #821ad4;
+  color: #ffffff;
+  padding: spacing(xl);
+  border-radius: $border-radius-lg;
+  text-align: center;
+  margin: spacing(xl) 0;
+  border: 3px solid #4737bb;
+  @include smooth-transition();
+  
+  h3 {
+    margin-bottom: spacing(md);
+    font-size: font-size(xl);
+  }
+  
+  p {
+    margin: 0;
+    opacity: 0.9;
+  }
+}
+
+// Vista previa del código SCSS
+.code-preview {
+  margin: spacing(xl) 0;
+  
+  h3 {
+    margin-bottom: spacing(md);
+    color: #821ad4;
+    font-size: font-size(lg);
+  }
+  
+  pre {
+    background: #f8f9fa;
+    border: 1px solid rgba(#1a1a1a, 0.1);
+    border-radius: $border-radius-md;
+    padding: spacing(lg);
+    overflow-x: auto;
+    font-family: $font-family-monospace;
+    font-size: font-size(sm);
+    line-height: 1.5;
+    margin: 0;
+    
+    code {
+      background: none;
+      padding: 0;
+      color: #1a1a1a;
+    }
+  }
+}

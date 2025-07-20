@@ -1,0 +1,134 @@
+// ========================================
+// PLACEHOLDERS REUTILIZABLES
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+
+// Placeholder para cards base
+%card-base {
+  background: #ffffff;
+  border-radius: $border-radius-lg;
+  padding: spacing(lg);
+  @include apply-shadow(md);
+  border: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+// Placeholder para botones base
+%button-base {
+  border: none;
+  border-radius: $border-radius-md;
+  padding: spacing(md) spacing(lg);
+  cursor: pointer;
+  font-weight: font-weight(semibold);
+  font-family: $font-family-base;
+  font-size: font-size(base);
+  @include smooth-transition();
+  @include focus-ring();
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Placeholder para inputs base
+%input-base {
+  display: block;
+  width: 100%;
+  padding: spacing(md);
+  font-family: $font-family-base;
+  font-size: font-size(base);
+  border: 2px solid rgba(26, 26, 26, 0.2);
+  border-radius: $border-radius-md;
+  background-color: #ffffff;
+  @include smooth-transition(border-color);
+  @include focus-ring();
+  
+  &:hover {
+    border-color: rgba(130, 26, 212, 0.3);
+  }
+  
+  &:focus {
+    border-color: #821ad4;
+    outline: none;
+  }
+  
+  &::placeholder {
+    color: #6c757d;
+  }
+}
+
+// Placeholder para contenedores flexibles
+%flex-container {
+  display: flex;
+  align-items: center;
+  gap: spacing(md);
+}
+
+// Placeholder para texto con iconos
+%icon-text {
+  @extend %flex-container;
+  
+  svg, 
+  .icon {
+    flex-shrink: 0;
+    width: 1.25em;
+    height: 1.25em;
+  }
+}
+
+// Placeholder para secciones principales
+%section-base {
+  padding: spacing(xl) 0;
+  
+  @include media(tablet) {
+    padding: spacing(xxl) 0;
+  }
+}
+
+// Placeholder para overlays
+%overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(26, 26, 26, 0.5);
+  z-index: z-index(backdrop);
+}
+
+// Placeholder para elementos centrados
+%centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Placeholder para contenido responsivo
+%responsive-content {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+// Placeholder para elementos centrados
+%centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Placeholder para contenido responsivo
+%responsive-content {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}

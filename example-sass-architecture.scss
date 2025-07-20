@@ -1,6 +1,3 @@
-// Ejemplo de arquitectura SASS profesional
-// Este archivo demuestra las funcionalidades explicadas en el tutorial
-
 // ========================================
 // VARIABLES
 // ========================================
@@ -229,52 +226,3 @@ $spacing: (
   .text-#{$name} { color: $value; }
   .border-#{$name} { border-color: $value; }
 }
-
-// ========================================
-// EJEMPLO DE ARQUITECTURA 7-1
-// ========================================
-
-// En un proyecto real, este archivo se dividiría así:
-//
-// abstracts/
-//   _variables.scss    - $colors, $breakpoints, $spacing
-//   _functions.scss    - color(), spacing(), get-contrast()
-//   _mixins.scss       - media(), flex-center(), button-style()
-//   _placeholders.scss - %card-base, %button-base
-//
-// base/
-//   _reset.scss        - Normalize/reset CSS
-//   _typography.scss   - Fuentes y estilos de texto
-//
-// layout/
-//   _header.scss       - .app-header
-//   _footer.scss       - Estilos del footer
-//   _sidebar.scss      - Estilos del sidebar
-//
-// components/
-//   _buttons.scss      - .btn-primary, .btn-secondary
-//   _cards.scss        - .card y variantes
-//   _forms.scss        - Estilos de formularios
-//
-// pages/
-//   _home.scss         - Estilos específicos de la home
-//   _about.scss        - Estilos específicos de about
-//
-// themes/
-//   _dark.scss         - Tema oscuro
-//
-// vendors/
-//   _normalize.scss    - CSS de terceros
-//
-// main.scss seria así:
-// @use 'abstracts/variables';
-// @use 'abstracts/functions';
-// @use 'abstracts/mixins';
-// @use 'abstracts/placeholders';
-// @use 'base/reset';
-// @use 'base/typography';
-// @use 'layout/header';
-// @use 'layout/footer';
-// @use 'components/buttons';
-// @use 'components/cards';
-// @use 'pages/home';

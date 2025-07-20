@@ -1,0 +1,105 @@
+// ========================================
+// CONTENEDOR PRINCIPAL DE LA APP
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    180deg, 
+    rgba(130, 26, 212, 0.02) 0%, 
+    rgba(255, 255, 255, 1) 20%
+  );
+}
+
+// Contenido principal
+.main-content {
+  flex: 1;
+  @include container();
+  padding-top: spacing(xl);
+  padding-bottom: spacing(xl);
+}
+
+// Sistema de tabs
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+  
+  &.active {
+    display: block;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Contenedores de secciones
+.palette-container,
+.tutorial-container,
+.examples-container {
+  @include container(1200px);
+  padding-top: spacing(xl);
+  padding-bottom: spacing(xl);
+}
+
+// Grid responsivo general
+.responsive-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: spacing(lg);
+  
+  @include media(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: spacing(xl);
+  }
+  
+  @include media(desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Utilidades de layout
+.flex-row {
+  @include flex-center(row, spacing(md));
+}
+
+.flex-col {
+  @include flex-center(column, spacing(md));
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: spacing(md);
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+// Espaciado y contenedores
+.section-spacing {
+  padding: spacing(xl) 0;
+  
+  @include media(tablet) {
+    padding: spacing(xxl) 0;
+  }
+}
+
+.content-wrapper {
+  @include container();
+}

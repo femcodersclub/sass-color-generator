@@ -1,0 +1,197 @@
+// ========================================
+// TIPOGRAFÍA BASE
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+
+// Configuración base del documento
+html {
+  font-size: 16px; 
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: font-size(base);
+  font-weight: font-weight(normal);
+  line-height: 1.6;
+  color: #1a1a1a;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 1rem 0;
+  font-weight: font-weight(bold);
+  line-height: 1.2;
+  color: inherit;
+}
+
+h1 {
+  font-size: font-size(xxxl);
+  
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+h2 {
+  font-size: font-size(xxl);
+  
+  @media (min-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+h3 {
+  font-size: font-size(xl);
+}
+
+h4 {
+  font-size: font-size(lg);
+}
+
+h5 {
+  font-size: font-size(base);
+  font-weight: font-weight(semibold);
+}
+
+h6 {
+  font-size: font-size(sm);
+  font-weight: font-weight(semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// Párrafos y texto
+p {
+  margin: 0 0 1rem 0;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Links
+a {
+  color: #821ad4;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: #4737bb;
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    outline: 2px solid #821ad4;
+    outline-offset: 2px;
+  }
+}
+
+// Texto enfatizado
+strong, b {
+  font-weight: font-weight(bold);
+}
+
+em, i {
+  font-style: italic;
+}
+
+small {
+  font-size: font-size(sm);
+  color: #6c757d;
+}
+
+// Código
+code {
+  font-family: $font-family-monospace;
+  font-size: 0.875em;
+  background-color: rgba(#1a1a1a, 0.1);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  color: #dc3545;
+}
+
+pre {
+  font-family: $font-family-monospace;
+  font-size: font-size(sm);
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 0 0 1rem 0;
+  border: 1px solid rgba(#1a1a1a, 0.1);
+  
+  code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+}
+
+// Blockquotes
+blockquote {
+  margin: 0 0 1rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #821ad4;
+  background-color: rgba(#821ad4, 0.05);
+  font-style: italic;
+  
+  p:last-child {
+    margin-bottom: 0;
+  }
+  
+  cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: font-size(sm);
+    font-style: normal;
+    color: #6c757d;
+    
+    &::before {
+      content: '— ';
+    }
+  }
+}
+
+// Listas
+ul, ol {
+  margin: 0 0 1rem 0;
+  padding-left: 2rem;
+  
+  li {
+    margin-bottom: 0.25rem;
+  }
+  
+  ul, ol {
+    margin-bottom: 0;
+  }
+}
+
+// Clases utilitarias de tipografía
+.text-xs { font-size: font-size(xs); }
+.text-sm { font-size: font-size(sm); }
+.text-base { font-size: font-size(base); }
+.text-lg { font-size: font-size(lg); }
+.text-xl { font-size: font-size(xl); }
+.text-xxl { font-size: font-size(xxl); }
+
+.font-light { font-weight: font-weight(light); }
+.font-normal { font-weight: font-weight(normal); }
+.font-medium { font-weight: font-weight(medium); }
+.font-semibold { font-weight: font-weight(semibold); }
+.font-bold { font-weight: font-weight(bold); }
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.text-uppercase { text-transform: uppercase; }
+.text-lowercase { text-transform: lowercase; }
+.text-capitalize { text-transform: capitalize; }
+
+.font-mono { font-family: $font-family-monospace; }

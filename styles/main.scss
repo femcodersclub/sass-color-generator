@@ -1,0 +1,115 @@
+// ========================================
+// ARCHIVO PRINCIPAL SASS - ARQUITECTURA 7-1
+// FemPalette - Generador de Paletas SASS
+// ========================================
+
+// 1. ABSTRACTS
+// Configuración, variables, funciones, mixins y placeholders
+@use 'abstracts/variables';
+@use 'abstracts/functions';
+@use 'abstracts/mixins';
+@use 'abstracts/placeholders';
+
+// 2. BASE
+// Reset, normalize y estilos base
+@use 'base/reset';
+@use 'base/typography';
+
+// 3. LAYOUT
+// Estructura principal de la página
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/grid';
+
+// 4. COMPONENTS
+// Componentes reutilizables
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/forms';
+@use 'components/notifications';
+
+// 5. PAGES
+// Estilos específicos de páginas
+@use 'pages/home';
+
+// 6. UTILITIES
+// Clases utilitarias y helpers
+@use 'utilities/utilities';
+
+// ========================================
+// ESTILOS GLOBALES ADICIONALES
+// ========================================
+
+// Mejoras de accesibilidad
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Modo oscuro básico (para futuras mejoras)
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+  
+  // Aquí se pueden agregar variables CSS para modo oscuro
+  // --primary-color: #9333ea;
+  // --background-color: #1a1a1a;
+}
+
+// Print styles
+@media print {
+  .header,
+  .footer,
+  .nav-tabs,
+  .primary-button,
+  .notification {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .tab-content {
+    display: block !important;
+  }
+  
+  .code-block,
+  .code-preview pre {
+    background: #f8f9fa !important;
+    border: 1px solid #ddd !important;
+  }
+}
+
+// Mejoras de rendimiento
+.app-container {
+  // Uso de contenimiento para optimización
+  contain: layout style paint;
+}
+
+// Scroll personalizado para navegadores webkit
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #821ad4;
+  border-radius: 4px;
+  
+  &:hover {
+    background: #4737bb;
+  }
+}

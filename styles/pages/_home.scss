@@ -1,0 +1,126 @@
+// ========================================
+// ESTILOS ESPECÍFICOS DE LA HOME
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+
+// Estilos específicos del generador
+#generator {
+  .palette-container {
+    h2 {
+      text-align: center;
+      color: #821ad4;
+      margin-bottom: spacing(xl);
+      font-size: font-size(xxl);
+      
+      @include media(tablet) {
+        font-size: font-size(xxxl);
+      }
+    }
+  }
+}
+
+// Estilos específicos del tutorial
+#tutorial {
+  .tutorial-container {
+    max-width: 900px;
+    margin: 0 auto;
+    
+    h2 {
+      text-align: center;
+      color: #821ad4;
+      margin-bottom: spacing(xxl);
+      font-size: font-size(xxl);
+      
+      @include media(tablet) {
+        font-size: font-size(xxxl);
+      }
+    }
+  }
+}
+
+// Estilos específicos de ejemplos
+#examples {
+  .examples-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    
+    h2 {
+      text-align: center;
+      color: #821ad4;
+      margin-bottom: spacing(xxl);
+      font-size: font-size(xxl);
+      
+      @include media(tablet) {
+        font-size: font-size(xxxl);
+      }
+    }
+  }
+}
+
+// Animaciones para elementos de la página
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Efectos hover para elementos interactivos
+.interactive-element {
+  @include smooth-transition();
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Scroll suave para navegación interna
+html {
+  scroll-behavior: smooth;
+}
+
+// Mejoras para pantallas pequeñas
+@media (max-width: 479px) {
+  .header {
+    padding: spacing(lg) spacing(md);
+    
+    h1 {
+      font-size: 1.8rem;
+    }
+    
+    p {
+      font-size: font-size(base);
+    }
+  }
+  
+  .nav-tabs {
+    flex-direction: column;
+    gap: spacing(sm);
+    
+    .tab-btn {
+      width: 100%;
+      max-width: 250px;
+    }
+  }
+  
+  .color-pickers {
+    grid-template-columns: 1fr;
+    gap: spacing(md);
+    
+    label {
+      padding: spacing(lg);
+      background: rgba(#ffffff, 0.8);
+      border-radius: $border-radius-lg;
+      @include apply-shadow(sm);
+    }
+  }
+}
