@@ -5,6 +5,7 @@ Un proyecto educativo interactivo que combina un generador de paletas de colores
 ## ✨ Características
 
 ### 🎨 Generador de Paletas
+
 - **Selector visual de colores** con vista previa en tiempo real
 - **Generación automática de variables SCSS** con funciones útiles
 - **Exportación de archivos .scss** listos para usar
