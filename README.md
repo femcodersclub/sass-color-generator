@@ -2,6 +2,8 @@
 
 Un proyecto educativo interactivo que combina un generador de paletas de colores con un tutorial completo de SASS. Perfecto para aprender SASS de forma práctica mientras generas variables útiles para tus proyectos.
 
+**📖 Post relacionado:** [SASS Next Level - FemCoders Club](https://www.femcodersclub.com/recursos/css/sass-next-level)
+
 ## 🎬 Vista Previa
 
 ![FemPalette Demo](assets/sass.gif)
